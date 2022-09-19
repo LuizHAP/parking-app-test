@@ -2,7 +2,16 @@ import { styled } from '@/styles/stitches.config'
 
 export const Container = styled('div', {
   display: 'flex',
-  flexDirection: 'column'
+  flexDirection: 'column',
+
+  variants: {
+    hasError: {
+      true: {
+        color: '$support_slot2',
+        borderColor: '$support_slot2'
+      }
+    }
+  }
 })
 
 export const InputLegend = styled('legend', {
@@ -17,13 +26,23 @@ export const InputLegend = styled('legend', {
 export const InputField = styled('input', {
   height: '67px',
   outlineWidth: '0',
-  fontSize: '16px',
+  fontSize: '23px',
   border: '1px solid #cccccc',
   borderRadius: 4,
   backgroundColor: '$yellow_bg',
   textAlign: 'center',
 
-  color: '$grey_scale_slot5'
+  '&::placeholder': {
+    color: '$grey_scale_slot5'
+  },
+
+  variants: {
+    hasError: {
+      true: {
+        color: '$support_slot2'
+      }
+    }
+  }
 })
 
 export const ErrorMessage = styled('span', {

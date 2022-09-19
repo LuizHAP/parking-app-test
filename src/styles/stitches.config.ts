@@ -38,7 +38,7 @@ export const {
       disabled: '#DADADA'
     },
     fonts: {
-      openSans: 'Open Sans, sans-serif'
+      openSans: 'Open Sans'
     }
   },
   utils: {
