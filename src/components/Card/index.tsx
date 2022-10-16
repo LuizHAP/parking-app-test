@@ -8,19 +8,21 @@ export function Card() {
 
   const isEntrance = parkingOption === 'entrance'
 
+  const isExit = parkingOption === 'exit'
+
   return (
     <S.Container>
       <S.Card>
         <S.ButtonsWrapper>
           <S.HeaderButton
             active={isEntrance}
-            onClick={() => updateParkingOption('exit')}
+            onClick={() => updateParkingOption('entrance')}
           >
             Entrada
           </S.HeaderButton>
           <S.HeaderButton
-            active={!isEntrance}
-            onClick={() => updateParkingOption('entrance')}
+            active={isExit}
+            onClick={() => updateParkingOption('exit')}
           >
             Saída
           </S.HeaderButton>
