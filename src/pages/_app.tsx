@@ -1,10 +1,11 @@
 import { Header } from '@/components/Header'
-import { AppProps } from 'next/app'
+import type { AppProps } from 'next/app'
 import Head from 'next/head'
 
 import { globalStyles } from '@/styles/globalStyles'
+import { AppProvider } from '@/contexts'
 
-function App({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps) {
   globalStyles()
 
   return (
@@ -13,12 +14,13 @@ function App({ Component, pageProps }: AppProps) {
         <title>Parking App</title>
         <meta name="description" content="A app to control a parking lot" />
       </Head>
-      <>
+
+      <AppProvider>
         <Header />
         <Component {...pageProps} />
-      </>
+      </AppProvider>
     </>
   )
 }
 
-export default App
+export default MyApp

@@ -1,32 +1,20 @@
-import React, { ComponentProps, InputHTMLAttributes } from 'react'
+import React, { ComponentProps, InputHTMLAttributes, ReactNode } from 'react'
 
-import ReactInputMask, { Props as ReactInputMaskProps } from 'react-input-mask'
+import { PatternFormat, PatternFormatProps } from 'react-number-format'
 import { Input } from '../Input'
 
 import type { InputProps } from '../Input'
 
-type InputMaskProps = ReactInputMaskProps &
-  ComponentProps<typeof ReactInputMask> &
+type InputMaskProps = PatternFormatProps &
+  ComponentProps<typeof PatternFormat> &
   Omit<InputHTMLAttributes<HTMLInputElement>, 'css'> & {
-    label: string
     hasError?: boolean
     errorMessage?: string
-    maskChar?: string
-    autoFocus?: boolean
+    label: string
   }
 
 export const InputMask = React.forwardRef<HTMLInputElement, InputMaskProps>(
-  ({ hasError = false, errorMessage, label, ...rest }, ref) => (
-    <ReactInputMask {...rest} alwaysShowMask data-testid="input-mask">
-      {(inputProps: InputProps) => (
-        <Input
-          {...inputProps}
-          hasError={hasError}
-          label={label}
-          errorMessage={errorMessage}
-          ref={ref}
-        />
-      )}
-    </ReactInputMask>
+  ({ hasError = false, label, errorMessage, ...rest }) => (
+    <PatternFormat {...rest} customInput={Input} label={label} />
   )
 )

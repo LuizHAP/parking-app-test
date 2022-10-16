@@ -1,32 +1,35 @@
 import { InputMask } from '@/components/InputMask'
-import { useState } from 'react'
+import { useParking } from '@/hooks/useParking'
+
 import * as S from './styles'
 
 export function Card() {
-  const [isEntranceOption, setIsEntranceOption] = useState(true)
+  const { parkingOption, updateParkingOption } = useParking()
+
+  const isEntrance = parkingOption === 'entrance'
 
   return (
     <S.Container>
       <S.Card>
         <S.ButtonsWrapper>
           <S.HeaderButton
-            active={isEntranceOption}
-            onClick={() => setIsEntranceOption(true)}
+            active={isEntrance}
+            onClick={() => updateParkingOption('exit')}
           >
             Entrada
           </S.HeaderButton>
           <S.HeaderButton
-            active={!isEntranceOption}
-            onClick={() => setIsEntranceOption(false)}
+            active={!isEntrance}
+            onClick={() => updateParkingOption('entrance')}
           >
             Saída
           </S.HeaderButton>
         </S.ButtonsWrapper>
-        {isEntranceOption ? (
+        {isEntrance ? (
           <S.CardBodyEntrance>
             <InputMask
-              mask="aaa-9999"
-              defaultValue="AAA-0000"
+              format="###-####"
+              value="AAA-0000"
               label="Número da placa: "
             />
             <S.Button>Confirmar Entrada</S.Button>
@@ -34,8 +37,8 @@ export function Card() {
         ) : (
           <S.CardBodyExit>
             <InputMask
-              mask="aaa-9999"
-              defaultValue="AAA-0000"
+              format="###-####"
+              value="AAA-0000"
               label="Número da placa: "
             />
             <S.ButtonExit>Pagamento</S.ButtonExit>

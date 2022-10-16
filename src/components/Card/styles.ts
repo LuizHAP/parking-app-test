@@ -23,7 +23,7 @@ export const ButtonsWrapper = styled('div', {
   display: 'flex'
 })
 
-export const CardBodyEntrance = styled('div', {
+export const CardBodyEntrance = styled('form', {
   width: '100%',
   padding: '40px 16px 64px'
 })
@@ -75,7 +75,7 @@ export const Button = styled('button', {
   }
 })
 
-export const CardBodyExit = styled('div', {
+export const CardBodyExit = styled('form', {
   width: '100%',
   padding: '40px 16px 0'
 })
